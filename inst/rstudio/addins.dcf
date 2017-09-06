@@ -1,0 +1,4 @@
+Name: Find TODOs
+Description: Find all places in your package which require more work.
+Binding: todorAddin
+Interactive: false
