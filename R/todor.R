@@ -38,7 +38,7 @@ build_rstudio_markers <- function(markers){
 
 #' @export
 todor <- function(todo_types = NULL) {
-  pkg_path <- find_package()
+  pkg_path <- todor::find_package()
   files <- dir(
     path = file.path(pkg_path,
                      c("R", "tests", "inst")
