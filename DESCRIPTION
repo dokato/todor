@@ -5,7 +5,7 @@ Authors@R: person("Dominik", "Krzemiński",
                   email = "first.last@example.com",
                   role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-Depends: R (>= 3.3.3)
+Depends: R (>= 3.3.2)
 Imports: stringr,
          rex
 License: What license is it under?

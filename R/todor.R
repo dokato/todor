@@ -5,6 +5,11 @@
 #' @name todor
 NULL
 
+#' Create markers
+#'
+#' @param todo.list list of files with lists of items detected in it
+#'
+#' @return markers list
 create_markers <- function(todo.list) {
   markers <- list()
   for (name in names(todo.list)) {
@@ -36,6 +41,11 @@ build_rstudio_markers <- function(markers){
                       autoSelect = "first")
 }
 
+#' TODOR
+#'
+#' @param todo_types vector with character describing types of elements to detect.
+#' If NULL default items will be used.
+#'
 #' @export
 todor <- function(todo_types = NULL) {
   pkg_path <- todor::find_package()
@@ -63,6 +73,11 @@ todor <- function(todo_types = NULL) {
   build_rstudio_markers(markers)
 }
 
-todorAddin <- function() {
+#' Todor addin
+#'
+#' Calls \code{todor} function.
+#'
+#' @export
+todor_addin <- function() {
   todor()
 }

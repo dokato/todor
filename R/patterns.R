@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param text
+#' @param patterns
+#'
+#' @return
+#' @export
+#'
+#' @examples
 find_pattern <- function(text, patterns = c("TODO", "FIXIT")) {
   pattern <- paste(patterns, collapse = "|")
   pattern <- sprintf("(%s)", pattern)
