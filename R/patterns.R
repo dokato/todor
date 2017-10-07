@@ -1,10 +1,9 @@
-#' Title
+#' Find pattern
 #'
-#' @param text
-#' @param patterns
+#' @param text character with text
+#' @param patterns character vector
 #'
-#' @return
-#' @export
+#' @return character with pattern in brackets or NULL
 #'
 #' @examples
 find_pattern <- function(text, patterns = c("TODO", "FIXIT")) {
