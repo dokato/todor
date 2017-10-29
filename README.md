@@ -5,3 +5,7 @@ This is an extension to RStudio, which finds all TODO, FIXME, CHANGED etc. comme
 # How to use?
 
 # Installation
+
+```
+devtools::install_github("dokato/todor")
+```
