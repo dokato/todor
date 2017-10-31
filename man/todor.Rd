@@ -2,11 +2,21 @@
 % Please edit documentation in R/todor.R
 \name{todor}
 \alias{todor}
+\alias{todor}
 \title{TODOR
-This package helps you to find all places in your code with places
+This package helps you to find all code rows in your code with places
 to be filled in the future.}
+\usage{
+todor(todo_types = NULL)
+}
+\arguments{
+\item{todo_types}{vector with character describing types of elements to detect.
+If NULL default items will be used.}
+}
 \description{
 TODOR
-This package helps you to find all places in your code with places
+This package helps you to find all code rows in your code with places
 to be filled in the future.
+
+TODOR
 }

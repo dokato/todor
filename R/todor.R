@@ -1,5 +1,5 @@
 #' TODOR
-#' This package helps you to find all places in your code with places
+#' This package helps you to find all code rows in your code with places
 #' to be filled in the future.
 #'
 #' @name todor
@@ -48,7 +48,7 @@ build_rstudio_markers <- function(markers){
 #'
 #' @export
 todor <- function(todo_types = NULL) {
-  pkg_path <- todor::find_package()
+  pkg_path <- find_package()
   files <- dir(
     path = file.path(pkg_path,
                      c("R", "tests", "inst")

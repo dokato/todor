@@ -5,6 +5,7 @@
 #'
 #' @return character with pattern in brackets or NULL
 #'
+#' @export
 #' @examples
 find_pattern <- function(text, patterns = c("TODO", "FIXIT")) {
   pattern <- paste(patterns, collapse = "|")
