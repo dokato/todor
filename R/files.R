@@ -1,8 +1,15 @@
+#' Find package
+#'
+#' @param path character with path to directory with R code files
+#'
+#' @return package path
+#'
+#' @examples
+#' find_package()
 find_package <- function(path = getwd()) {
   start_wd <- getwd()
   on.exit(setwd(start_wd))
   setwd(path)
-
   prev_path <- ""
   while (!file.exists(file.path(prev_path, "DESCRIPTION"))) {
     if (prev_path == getwd()) {
@@ -14,6 +21,18 @@ find_package <- function(path = getwd()) {
   prev_path
 }
 
+#' Process file
+#'
+#' It calls \code{find_pattern} on given file and return detected markers or NULL.
+#'
+#' @param filepath character with
+#' @param patterns vector of characters with given patterns to detect,
+#' e.g. c("TODO", "BUG")
+#'
+#' @return list of markers (which are lists describing properties
+#' of detected item from find_pattern)
+#'
+#' @examples
 process_file <- function(filepath, patterns) {
   con <- file(filepath, "r")
   n <- 1
