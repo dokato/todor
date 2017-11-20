@@ -4,12 +4,9 @@
 #' @param patterns character vector
 #'
 #' @return character with pattern in brackets or NULL
-#'
-#' @export
-#' @examples
 find_pattern <- function(text, patterns = c("TODO", "FIXIT")) {
   pattern <- paste(patterns, collapse = "|")
-  pattern <- sprintf("(%s)", pattern)
+  pattern <- sprintf("#'?\\s?(%s)[^A-Z]", pattern)
   extr <- stringr::str_extract(text, pattern)
   if (!is.na(extr)) {
     extr <- stringr::str_extract(extr, "[a-zA-Z]+")
