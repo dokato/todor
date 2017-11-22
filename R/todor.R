@@ -5,9 +5,9 @@
 #' @name todor
 NULL
 
-#' TODOR
+#' todor
 #'
-#' Called on packages. Checks all places in the code which require amendents
+#' Called on project that are not R packages. Checks all places in the code which require amendents
 #' as specified in \code{todo_types}.
 #' It triggers rstudio markers to appear.
 #'
@@ -40,7 +40,11 @@ todor <- function(todo_types = NULL, search_path = getwd()) {
   build_rstudio_markers(markers)
 }
 
-#' TODOR
+#' todor_package
+#'
+#' Called on packages. Checks all places in the code which require amendents
+#' as specified in \code{todo_types}.
+#' It triggers rstudio markers to appear.
 #'
 #' @param todo_types
 #'   todor that only checks directories specific to R packages
