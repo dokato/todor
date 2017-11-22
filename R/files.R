@@ -31,8 +31,6 @@ find_package <- function(path = getwd()) {
 #'
 #' @return list of markers (which are lists describing properties
 #' of detected item from find_pattern)
-#'
-#' @examples
 process_file <- function(filepath, patterns) {
   con <- file(filepath, "r")
   n <- 1
