@@ -23,7 +23,7 @@ todor <- function(todo_types = NULL, search_path = getwd()) {
     recursive = TRUE,
     full.names = TRUE
   )
-  # TODO some task to be done in the future
+
   # Default TODO types
   patterns <- c("FIXME", "TODO", "CHANGED", "IDEA",
                 "HACK", "NOTE", "REVIEW", "BUG",
@@ -48,7 +48,7 @@ todor <- function(todo_types = NULL, search_path = getwd()) {
 #'
 #' @param todo_types vector with character describing types of elements to detect.
 #' If NULL default items will be used.
-#'                      
+#'
 #' @export
 todor_package <- function(todo_types = NULL) {
   pkg_path    <- find_package()
