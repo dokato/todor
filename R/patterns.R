@@ -15,3 +15,4 @@ find_pattern <- function(text, patterns = c("TODO", "FIXIT")) {
     extr <- NULL
   extr
 }
+

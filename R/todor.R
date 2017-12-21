@@ -14,16 +14,23 @@ NULL
 #' @param todo_types vector with character describing types of elements to detect.
 #' If NULL default items will be used.
 #' @param search_path vector with paths that contains comments you are looking for.
+#' @param file character with path to file. If not NULL the search_path will be ignored.
 #'
 #' @export
-todor <- function(todo_types = NULL, search_path = getwd()) {
-  files <- dir(
-    path = search_path,
-    pattern = rex::rex(".", one_of("Rr"), end),
-    recursive = TRUE,
-    full.names = TRUE
-  )
-
+todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
+  if (!is.null(file))
+    files <- dir(
+      path = search_path,
+      pattern = rex::rex(".", one_of("Rr"), end),
+      recursive = TRUE,
+      full.names = TRUE
+    )
+  else {
+    if (!file.exists(file))
+      stop("File does not exists!")
+    else
+      files <- file
+  }
   # Default TODO types
   patterns <- c("FIXME", "TODO", "CHANGED", "IDEA",
                 "HACK", "NOTE", "REVIEW", "BUG",
@@ -57,6 +64,11 @@ todor_package <- function(todo_types = NULL) {
                   )
   todor(todo_types = todo_types, search_path = search_path)
 }
+
+todor_file <- function(file_name, todo_types = NULL) {
+  todor(todo_types = todo_types, file = file_name)
+}
+
 #' Todor addin
 #'
 #' Calls \code{todor} function.
