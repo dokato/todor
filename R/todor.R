@@ -65,11 +65,18 @@ todor_package <- function(todo_types = NULL) {
   todor(todo_types = todo_types, search_path = search_path)
 }
 
+#' Todor file
+#'
+#' @param file_name character with file name
+#' @param todo_types vector with character describing types of elements to detect.
+#' If NULL default items will be used.
+#'
+#' @export
 todor_file <- function(file_name, todo_types = NULL) {
   todor(todo_types = todo_types, file = file_name)
 }
 
-#' Todor addin
+#' Todor project addin
 #'
 #' Calls \code{todor} function.
 #'
@@ -78,7 +85,7 @@ todor_project_addin <- function() {
   todor(search_path = rstudioapi::getActiveProject())
 }
 
-#' Title
+#' Todor package addin
 #'
 #' Calls \code{todor_package} function.
 #'
