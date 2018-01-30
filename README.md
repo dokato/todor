@@ -43,7 +43,15 @@ Regardless of the option that you have chosen, as a result you should see the Ma
 
 ![TODO Markers](images/pic2.png)
 
+To perform the search on single file just call:
+
+```r
+todor_file("path_to_file.R")
+```
+
 # What can it detect?
+
+By default *TODOr* looks for the following notes:
 
 - _FIXME_
 - _TODO_
