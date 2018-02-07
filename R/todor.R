@@ -18,7 +18,7 @@ NULL
 #'
 #' @export
 todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
-  if (!is.null(file))
+  if (is.null(file))
     files <- dir(
       path = search_path,
       pattern = rex::rex(".", one_of("Rr"), end),
