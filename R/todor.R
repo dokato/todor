@@ -42,7 +42,8 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
       stop(paste("One or more 'todo_types' were not recognized.",
            "See documentation of 'todor' for more information"))
   }
-  processed <- sapply(files, function(x) process_file(x, todo_types))
+  processed <- lapply(files, function(x) process_file(x, todo_types))
+  names(processed) <- files
   markers <- create_markers(processed)
   build_rstudio_markers(markers)
 }
