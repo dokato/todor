@@ -5,6 +5,8 @@
 #' @name todor
 NULL
 
+DEFAULT_PATTERNS <- "default.csv"
+
 #' Todor addin
 #'
 #' Called on project that are not R packages. Checks all places in the code which require amendents
@@ -32,9 +34,9 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
       files <- file
   }
   # Default TODO types
-  patterns <- c("FIXME", "TODO", "CHANGED", "IDEA",
-                "HACK", "NOTE", "REVIEW", "BUG",
-                "QUESTION", "COMBAK", "TEMP")
+  patterns <- as.character(read.csv(system.file(DEFAULT_PATTERNS, package = "todor"),
+                          stringsAsFactors=FALSE, header = FALSE))
+
   if (is.null(todo_types))
     todo_types <- patterns
   else {
