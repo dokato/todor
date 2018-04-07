@@ -10,7 +10,8 @@ DEFAULT_PATTERNS <- "default.csv"
 #' Todor addin
 #'
 #' Called on project that are not R packages. Checks all places in the code which require amendents
-#' as specified in \code{todo_types}.
+#' as specified in \code{todo_types} on R and r files. When option \code{todor_rmd} is set to TRUE
+#' it searches also through Rmd files.
 #' It triggers rstudio markers to appear.
 #'
 #' @param todo_types vector with character describing types of elements to detect.
@@ -20,13 +21,23 @@ DEFAULT_PATTERNS <- "default.csv"
 #'
 #' @export
 todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
-  if (is.null(file))
+  if (is.null(file)) {
     files <- dir(
       path = search_path,
       pattern = rex::rex(".", one_of("Rr"), end),
       recursive = TRUE,
       full.names = TRUE
     )
+    if (getOption("todor_rmd", FALSE)) {
+      rmdfiles <- dir(
+        path = search_path,
+        pattern = rex::rex(".", "Rmd", end),
+        recursive = TRUE,
+        full.names = TRUE
+      )
+      files <- c(files, rmdfiles)
+    }
+  }
   else {
     if (!file.exists(file))
       stop("File does not exists!")

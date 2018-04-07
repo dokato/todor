@@ -2,7 +2,7 @@
 % Please edit documentation in R/todor.R
 \name{todor_package_addin}
 \alias{todor_package_addin}
-\title{Title}
+\title{Todor package addin}
 \usage{
 todor_package_addin()
 }
