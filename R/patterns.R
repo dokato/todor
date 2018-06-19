@@ -6,7 +6,7 @@
 #' @return character with pattern in brackets or NULL
 find_pattern <- function(text, patterns = c("TODO", "FIXIT")) {
   pattern <- paste(patterns, collapse = "|")
-  pattern <- sprintf("#'?\\s?(%s)[^A-Z]", pattern)
+  pattern <- sprintf("^\\s{0,}.{0,6}(%s).+?(\\w.*?)\\s?(-->)?$", pattern)
   extr <- stringr::str_extract(text, pattern)
   if (!is.na(extr)) {
     extr <- stringr::str_extract(extr, "[a-zA-Z]+")
