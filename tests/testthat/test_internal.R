@@ -27,5 +27,6 @@ test_that("test find_pattern function", {
   expect_match(p, "TODO")
   p <- find_pattern("#TODO ab abc absdkskad", patterns = c("TODO"))
   expect_match(p, "TODO")
+  p <- find_pattern("<!-- BUG ab abc absdkskad -->", patterns = c("BUG"))
+  expect_match(p, "BUG")
 })
-
