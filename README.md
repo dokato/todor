@@ -1,6 +1,6 @@
 # TODOr
 
-This is a simple addin to RStudio, which finds all TODO, FIXME, CHANGED etc. comments in your project (or package) and shows them as a markers list.
+This is a RStudio addin that finds all **TODO**, **FIXME**, **CHANGED** etc. comments in your **project** or **package** and shows them as a markers list.
 
 # Installation
 
@@ -19,7 +19,7 @@ simple_function <- function(a, b) {
 }
 ```
 
-With *TODOr*, detecting such a places in the forest of code lines is simple. There are several options to do so. You can click at "Addins" button in the top panel and select "Find package TODOs" or "Find project TODOs") from the list of possible options:
+With **TODOr**, detecting such a places in the forest of code lines is simple. There are several options to do so. You can click at "Addins" button in the top panel and select *"Find package TODOs"* or *"Find project TODOs"*) from the list of possible options:
 
 ![Addins panel](images/pic1.png)
 
@@ -35,15 +35,15 @@ or you can call:
 > todor::todor(c("TODO"))
 ```
 
-to limit `todor` for detecting only `"TODO"` tags.
+to limit `todor` detection only to `"TODO"` tags.
 
-**HINT:** By default `todor` works on projects, but you can call `todor_package` to search entire package.
+**HINT:** By default `todor` works on projects, but you can call `todor_package` to search an entire package.
 
 Regardless of the option that you have chosen, as a result you should see the Markers tab next to your console window in RStudio.
 
 ![TODO Markers](images/pic2.png)
 
-To perform the search on single file just call:
+To perform the search on a single file just call:
 
 ```r
 todor_file("path_to_file.R")
