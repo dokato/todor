@@ -52,3 +52,20 @@ process_file <- function(filepath, patterns) {
   close(con)
   markers
 }
+
+#' List files with given extension
+#'
+#' It lists recursively with full path names.
+#'
+#' @param extension character with extension
+#' @param search_path character with path to start searching from
+#'
+#' @return list of files with specified extension
+list_files_with_extension <- function(extension, search_path) {
+  dir(
+    path = search_path,
+    pattern = rex::rex(".", extension, end),
+    recursive = TRUE,
+    full.names = TRUE
+  )
+}
