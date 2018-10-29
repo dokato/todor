@@ -5,6 +5,7 @@
 #' @name todor
 NULL
 
+#' Default patterns
 DEFAULT_PATTERNS <- "default.csv"
 
 #' Todor addin
@@ -29,13 +30,16 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
       full.names = TRUE
     )
     if (getOption("todor_rmd", FALSE)) {
-      rmdfiles <- dir(
-        path = search_path,
-        pattern = rex::rex(".", "Rmd", end),
-        recursive = TRUE,
-        full.names = TRUE
-      )
+      rmdfiles <- list_files_with_extension("Rmd", search_path)
       files <- c(files, rmdfiles)
+    }
+    if (getOption("todor_rnw", FALSE)) {
+      rnwfiles <- list_files_with_extension("Rnw", search_path)
+      files <- c(files, rnwfiles)
+    }
+    if (getOption("todor_rhtml", FALSE)) {
+      rhtmlfiles <- list_files_with_extension("Rhtml", search_path)
+      files <- c(files, rhtmlfiles)
     }
   }
   else {
