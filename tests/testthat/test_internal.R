@@ -30,3 +30,11 @@ test_that("test find_pattern function", {
   p <- find_pattern("<!-- BUG ab abc absdkskad -->", patterns = c("BUG"))
   expect_match(p, "BUG")
 })
+
+test_that("test find_pattern function at the end of the line", {
+  p <- find_pattern(" ab abc absdkskad # TODO", patterns = c("TODO"))
+  expect_match(p, "TODO")
+  p <- find_pattern(" ab abc absdkskad # TODO", patterns = c("FIX"))
+  expect_null(p)
+})
+

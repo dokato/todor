@@ -2,7 +2,6 @@
 % Please edit documentation in R/todor.R
 \name{todor}
 \alias{todor}
-\alias{todor}
 \title{TODOR
 This package helps you to find all code rows in your code with places
 to be filled in the future.}
@@ -18,10 +17,6 @@ If NULL default items will be used.}
 \item{file}{character with path to file. If not NULL the search_path will be ignored.}
 }
 \description{
-TODOR
-This package helps you to find all code rows in your code with places
-to be filled in the future.
-
 Called on project that are not R packages. Checks all places in the code which require amendents
 as specified in \code{todo_types} on R and r files. When option \code{todor_rmd} is set to TRUE
 it searches also through Rmd files.

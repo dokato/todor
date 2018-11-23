@@ -4,7 +4,7 @@
 \alias{find_pattern}
 \title{Find pattern}
 \usage{
-find_pattern(text, patterns = c("TODO", "FIXIT"))
+find_pattern(text, patterns = c("TODO", "FIXME"))
 }
 \arguments{
 \item{text}{character with text}
@@ -15,5 +15,14 @@ find_pattern(text, patterns = c("TODO", "FIXIT"))
 character with pattern in brackets or NULL
 }
 \description{
-Find pattern
+Find patterns like
+\code{
+# TODO text
+#TODO Test this thing.
+#TODO: Test this thing.
+#TODO - Test this thing.
+<!-- TODO Test this thing. -->
+<!-- TODO: Test this thing. -->
+<!-- TODO - Test this thing. -->
+}
 }
