@@ -41,7 +41,7 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
       rhtmlfiles <- list_files_with_extension("Rhtml", search_path)
       files <- c(files, rhtmlfiles)
     }
-    if (getOption("todor_exlude_packrat", TRUE)){
+    if (getOption("todor_exclude_packrat", TRUE)) {
       # Remove all filesnames, which include the packrat directory
       files <- files[!stringr::str_detect(files, "/packrat/")]
     }
