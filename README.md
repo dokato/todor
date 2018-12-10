@@ -19,7 +19,7 @@ simple_function <- function(a, b) {
 }
 ```
 
-With **TODOr**, detecting such a places in the forest of code lines is simple. There are several options to do so. You can click at "Addins" button in the top panel and select *"Find package TODOs"* or *"Find project TODOs"*) from the list of possible options:
+With **TODOr**, detecting such places in the forest of code lines is simple. There are several options to do so. You can click at "Addins" button in the top panel and select *"Find package TODOs"* or *"Find project TODOs"*) from the list of possible options:
 
 ![Addins panel](images/pic1.png)
 
