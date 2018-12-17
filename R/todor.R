@@ -54,8 +54,10 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
       files <- file
   }
   # Default TODO types
-  patterns <- as.character(read.csv(system.file(DEFAULT_PATTERNS, package = "todor"),
-                          stringsAsFactors=FALSE, header = FALSE))
+  patterns <- as.character(read.csv(
+    system.file(DEFAULT_PATTERNS, package = "todor"),
+    stringsAsFactors = FALSE, header = FALSE)
+  )
 
   if (is.null(todo_types))
     todo_types <- patterns
@@ -105,7 +107,7 @@ todor_file <- function(file_name, todo_types = NULL) {
 #'
 #' @export
 todor_project_addin <- function() {
-  project_path = rstudioapi::getActiveProject()
+  project_path <- rstudioapi::getActiveProject()
   if (is.null(project_path))
     stop(paste0("You're not within R project. Change to project, ",
                 "or use `todor_file` instead."))

@@ -2,15 +2,18 @@ library(todor)
 
 test_that("test process_file function", {
   to_detect <- c("BUG")
-  p <- process_file(system.file("tests/testthat/demo.R", package = "todor"), to_detect)
+  p <- process_file(system.file("tests/testthat/demo.R", package = "todor"),
+                    to_detect)
   expect_equal(length(p), 1)
   to_detect <- c("BUG", "TODO")
-  p <- process_file(system.file("tests/testthat/demo.R", package = "todor"), to_detect)
+  p <- process_file(system.file("tests/testthat/demo.R", package = "todor"),
+                    to_detect)
   expect_equal(length(p), 2)
 })
 
 test_that("test create_markers function", {
-  p <- list(file1.R = list(list(nr=4, type="TODO", text="abc abc"), list(nr=6, type="BUG", text="www")))
+  p <- list(file1.R = list(list(nr = 4, type = "TODO", text = "abc abc"),
+                           list(nr = 6, type = "BUG", text = "www")))
   m <- create_markers(p)
   expect_match(m[[1]]$file, "file1.R")
   expect_match(m[[1]]$type, "info")
@@ -37,4 +40,3 @@ test_that("test find_pattern function at the end of the line", {
   p <- find_pattern(" ab abc absdkskad # TODO", patterns = c("FIX"))
   expect_null(p)
 })
-
