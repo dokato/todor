@@ -5,9 +5,10 @@ Authors@R: person("Dominik", "Krzemiński",
                   email = "raymon92@gmail.com",
                   role = c("aut", "cre"))
 Description: This is a simple addin to RStudio, which finds all TODO, FIXME, CHANGED etc. comments in your project and shows them as a markers list.
-Depends: R (>= 3.3.2)
+Depends: R (>= 3.3)
 Imports: stringr,
-         rex
+         rex,
+         rstudioapi
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

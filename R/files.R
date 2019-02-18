@@ -3,9 +3,6 @@
 #' @param path character with path to directory with R code files
 #'
 #' @return package path
-#'
-#' @examples
-#' find_package()
 find_package <- function(path = getwd()) {
   start_wd <- getwd()
   on.exit(setwd(start_wd))
@@ -61,6 +58,7 @@ process_file <- function(filepath, patterns) {
 #' @param search_path character with path to start searching from
 #'
 #' @return list of files with specified extension
+#' @import rex
 list_files_with_extension <- function(extension, search_path) {
   dir(
     path = search_path,

@@ -8,6 +8,8 @@ NULL
 #' Default patterns
 DEFAULT_PATTERNS <- "default.csv"
 
+rex::register_shortcuts("todor")
+
 #' Todor addin
 #'
 #' Called on project that are not R packages. Checks all places in the code which require amendents
@@ -21,6 +23,8 @@ DEFAULT_PATTERNS <- "default.csv"
 #' @param file character with path to file. If not NULL the search_path will be ignored.
 #'
 #' @export
+#' @import rex
+#' @import utils
 todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
   if (is.null(file)) {
     files <- dir(
@@ -106,6 +110,7 @@ todor_file <- function(file_name, todo_types = NULL) {
 #' Calls \code{todor} function.
 #'
 #' @export
+#' @import rstudioapi
 todor_project_addin <- function() {
   project_path <- rstudioapi::getActiveProject()
   if (is.null(project_path))

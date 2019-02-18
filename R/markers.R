@@ -25,7 +25,6 @@ create_markers <- function(todo.list) {
 #'
 #' @param markers list of markers
 #'
-#' @import rstudioapi
 build_rstudio_markers <- function(markers){
   rstudioapi::callFun("sourceMarkers",
                       name = "todor",
