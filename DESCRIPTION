@@ -1,6 +1,6 @@
 Package: todor
 Title: Find all TODO (and more...) notes
-Version: 0.0.1
+Version: 0.0.5
 Authors@R: person("Dominik", "Krzemiński",
                   email = "raymon92@gmail.com",
                   role = c("aut", "cre"))
@@ -12,5 +12,5 @@ Imports: stringr,
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: testthat
