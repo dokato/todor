@@ -1,10 +1,10 @@
 Package: todor
-Title: Find all TODO (and more...) notes
+Title: Find All TODO Comments and More
 Version: 0.0.5
 Authors@R: person("Dominik", "Krzemiński",
                   email = "raymon92@gmail.com",
                   role = c("aut", "cre"))
-Description: This is a simple addin to RStudio, which finds all TODO, FIXME, CHANGED etc. comments in your project and shows them as a markers list.
+Description: This is a simple addin to RStudio that finds all TODO, FIX ME, CHANGED etc. comments in your project and shows them as a markers list.
 Depends: R (>= 3.3)
 Imports: stringr,
          rex,
