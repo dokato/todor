@@ -2,12 +2,10 @@ library(todor)
 
 test_that("test process_file function", {
   to_detect <- c("BUG")
-  p <- process_file(system.file("tests/testthat/demo.R", package = "todor"),
-                    to_detect)
+  p <- process_file("demo.R", to_detect)
   expect_equal(length(p), 1)
   to_detect <- c("BUG", "TODO")
-  p <- process_file(system.file("tests/testthat/demo.R", package = "todor"),
-                    to_detect)
+  p <- process_file("demo.R", to_detect)
   expect_equal(length(p), 2)
 })
 
