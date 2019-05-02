@@ -25,6 +25,8 @@ rex::register_shortcuts("todor")
 #' @export
 #' @import rex
 #' @import utils
+#' @examples
+#' todor()
 todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
   if (is.null(file)) {
     files <- dir(
@@ -86,6 +88,8 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
 #' If NULL default items will be used.
 #'
 #' @export
+#' @examples
+#' todor_package(c("FIXME"))
 todor_package <- function(todo_types = NULL) {
   pkg_path    <- find_package()
   search_path <- file.path(pkg_path,
@@ -101,6 +105,10 @@ todor_package <- function(todo_types = NULL) {
 #' If NULL default items will be used.
 #'
 #' @export
+#' @examples
+#' \dontrun{
+#'  todor_file("myfile.R")
+#' }
 todor_file <- function(file_name, todo_types = NULL) {
   todor(todo_types = todo_types, file = file_name)
 }

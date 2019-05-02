@@ -22,3 +22,6 @@ as specified in \code{todo_types} on R and r files. When option \code{todor_rmd}
 it searches also through Rmd files. Unless option \code{todor_exlude_packrat} is set to FALSE, all files in the packrat directory are excluded.
 It triggers rstudio markers to appear.
 }
+\examples{
+todor()
+}
