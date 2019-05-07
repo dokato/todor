@@ -49,6 +49,23 @@ To perform the search on a single file just call:
 todor_file("path_to_file.R")
 ```
 
+### Markdown
+You can unlock the markdown search option by setting:
+
+```r
+options(todor_rmd=TRUE)
+```
+
+In markdown you probably don't want to use `#` for comments. But that's okay, as `TODOr` supports HTML-like comments too.
+
+```md
+# Section
+
+<!-- TODO Change this section. -->
+
+* Very important element.
+```
+
 # What can it detect?
 
 By default *TODOr* looks for the following notes:
