@@ -1,6 +1,7 @@
-#' TODOR
-#' This package helps you to find all code rows in your code with places
-#' to be filled in the future.
+#' TODOr
+#'
+#' This package helps you to find all rows in your code with places
+#' to be fixed / improved in the future.
 #'
 #' @name todor
 NULL
@@ -10,15 +11,21 @@ DEFAULT_PATTERNS <- "default.csv"
 
 rex::register_shortcuts("todor")
 
-#' Todor addin
+#' TODOr
 #'
-#' Called on project that are not R packages. Checks all places in the code which require amendents
-#' as specified in \code{todo_types} on R and r files. When option \code{todor_rmd} is set to TRUE
-#' it searches also through Rmd files. Unless option \code{todor_exlude_packrat} is set to FALSE, all files in the packrat directory are excluded.
+#' It checks all places in the code for amendent comments on R and r files
+#' (eg. TODO, FIXME etc.) as specified in \code{todo_types}.
 #' It triggers rstudio markers to appear.
 #'
+#' When option \code{todor_rmd} is set to TRUE it searches also through Rmd files.
+#' Unless option \code{todor_exlude_packrat} is set to FALSE, all files in the packrat directory
+#' are excluded.
+#'
+#' This should be called on project that are not R packages. Check \code{todor_package}
+#' to search only through the package folders.
+#'
 #' @param todo_types vector with character describing types of elements to detect.
-#' If NULL default items will be used.
+#' If NULL, the default items will be used.
 #' @param search_path vector with paths that contains comments you are looking for.
 #' @param file character with path to file. If not NULL the search_path will be ignored.
 #'
@@ -26,7 +33,9 @@ rex::register_shortcuts("todor")
 #' @import rex
 #' @import utils
 #' @examples
+#' \donttest{
 #' todor()
+#' }
 todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
   if (is.null(file)) {
     files <- dir(
@@ -78,18 +87,20 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
   build_rstudio_markers(markers)
 }
 
-#' Todor Package addin
+#' Todor Package
 #'
-#' Called on packages. Checks all places in the code which require amendents
-#' as specified in \code{todo_types}.
+#' It checks all places in the code for amendent comments on R and r files
+#' (eg. TODO, FIXME etc.) as specified in \code{todo_types}.
 #' It triggers rstudio markers to appear.
 #'
 #' @param todo_types vector with character describing types of elements to detect.
-#' If NULL default items will be used.
+#' If NULL, the default items will be used.
 #'
 #' @export
 #' @examples
-#' todor_package(c("FIXME"))
+#' \donttest{
+#'  todor_package(c("FIXME"))
+#' }
 todor_package <- function(todo_types = NULL) {
   pkg_path    <- find_package()
   search_path <- file.path(pkg_path,
@@ -100,13 +111,15 @@ todor_package <- function(todo_types = NULL) {
 
 #' Todor file
 #'
+#' Searches for all TODO, FIXME, etc. places in your code.
+#'
 #' @param file_name character with file name
 #' @param todo_types vector with character describing types of elements to detect.
-#' If NULL default items will be used.
+#' If NULL, the default items will be used.
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'  todor_file("myfile.R")
 #' }
 todor_file <- function(file_name, todo_types = NULL) {
@@ -117,7 +130,6 @@ todor_file <- function(file_name, todo_types = NULL) {
 #'
 #' Calls \code{todor} function.
 #'
-#' @export
 #' @import rstudioapi
 todor_project_addin <- function() {
   project_path <- rstudioapi::getActiveProject()
@@ -130,8 +142,6 @@ todor_project_addin <- function() {
 #' Todor package addin
 #'
 #' Calls \code{todor_package} function.
-#'
-#' @export
 todor_package_addin <- function() {
   todor_package()
 }

@@ -3,8 +3,6 @@
 export(todor)
 export(todor_file)
 export(todor_package)
-export(todor_package_addin)
-export(todor_project_addin)
 import(rex)
 import(rstudioapi)
 import(utils)
