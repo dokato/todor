@@ -4,6 +4,14 @@ This is a RStudio addin that finds all **TODO**, **FIXME**, **CHANGED** etc. com
 
 # Installation
 
+Stable release:
+
+```
+install.packages("todor")
+```
+
+The most recent version:
+
 ```
 devtools::install_github("dokato/todor")
 ```
