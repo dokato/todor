@@ -1,6 +1,6 @@
 # TODOr
 
-This is a RStudio addin that finds all **TODO**, **FIXME**, **CHANGED** etc. comments in your **project** or **package** and shows them as a markers list.
+This is RStudio addin that finds all **TODO**, **FIXME**, **CHANGED** etc. comments in your **project** or **package** and shows them as a markers list.
 
 # Installation
 
@@ -18,7 +18,7 @@ devtools::install_github("dokato/todor")
 
 # How to use it?
 
-When you write an R package, sometimes it's useful to note in comments that there is a place for improvement.
+When you write an R package, sometimes it's useful to make a note in comments about a place for improvement.
 
 ```r
 simple_function <- function(a, b) {
@@ -27,7 +27,7 @@ simple_function <- function(a, b) {
 }
 ```
 
-With **TODOr**, detecting such places in the forest of code lines is simple. There are several options to do so. You can click at "Addins" button in the top panel and select *"Find package TODOs"* or *"Find project TODOs"*) from the list of possible options:
+With **TODOr**, detecting such places in the forest of code lines is simple. There are several options to do so. You can click at "Addins" button in the top panel and select *"Find package TODOs"* or *"Find project TODOs"* from the list of possible options:
 
 ![Addins panel](images/pic1.png)
 
@@ -54,12 +54,12 @@ Regardless of the option that you have chosen, as a result you should see the Ma
 To perform the search on a single file just call:
 
 ```r
-todor_file("path_to_file.R")
+> todor::todor_file("path_to_file.R")
 ```
 
 ### Markdown
 
-In markdown you probably don't want to use `#` for comments. But that's okay, as `TODOr` supports HTML-like comments too.
+In markdown you probably don't want to use `#` comments. But that's okay, as `TODOr` supports HTML-like comments too.
 
 ```md
 # Section
