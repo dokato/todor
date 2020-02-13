@@ -28,12 +28,16 @@ rex::register_shortcuts("todor")
 #' @import utils
 todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
   if (is.null(file)) {
-    files <- dir(
-      path = search_path,
-      pattern = rex::rex(".", one_of("Rr"), end),
-      recursive = TRUE,
-      full.names = TRUE
-    )
+    if (getOption("todor_exclude_r", FALSE)) {
+      files <- c()
+    } else {
+      files <- dir(
+        path = search_path,
+        pattern = rex::rex(".", one_of("Rr"), end),
+        recursive = TRUE,
+        full.names = TRUE
+      )
+    }
     if (getOption("todor_rmd", TRUE)) {
       rmdfiles <- list_files_with_extension("Rmd", search_path)
       files <- c(files, rmdfiles)
@@ -46,7 +50,6 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
       rhtmlfiles <- list_files_with_extension("Rhtml", search_path)
       files <- c(files, rhtmlfiles)
     }
-
     if (getOption("todor_exclude_packrat", TRUE)) {
       # Remove all filesnames, which include the packrat directory
       files <- files[!stringr::str_detect(files, "/packrat/")]
