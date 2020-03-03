@@ -5,23 +5,40 @@
 #' @name todor
 NULL
 
-#' Default patterns
-DEFAULT_PATTERNS <- "default.csv"
-
 rex::register_shortcuts("todor")
 
 #' Todor addin
 #'
-#' Called on project that are not R packages. Checks all places in the code which require amendents
-#' as specified in \code{todo_types} on R and r files. When option \code{todor_rmd} is set to TRUE
-#' it searches also through Rmd files (default).
-#' Unless option \code{todor_exlude_packrat} is set to FALSE, all files in the packrat directory are excluded.
+#' Called on project that are not R packages. Checks all places in the code
+#' which require amendents as specified in \code{todo_types} on R and r files.
 #' It triggers rstudio markers to appear.
 #'
-#' @param todo_types vector with character describing types of elements to detect.
-#' If NULL default items will be used.
-#' @param search_path vector with paths that contains comments you are looking for.
-#' @param file character with path to file. If not NULL the search_path will be ignored.
+#' There are several options that let you control TODOr behaviour:
+#'
+#' \code{todor_rmd} - when set to TRUE it searches also through
+#' Rmd files (default TRUE).
+#'
+#' \code{todor_rnw} - when set to TRUE it searches also through
+#' Rnw files (default FALSE).
+#'
+#' \code{todor_rhtml} - when set to TRUE it searches also through
+#' Rhtml files (default FALSE).
+#'
+#' \code{todor_exlude_packrat} when set to FALSE, all files in the
+#' "packrat" directory are excluded (default TRUE).
+#'
+#' \code{todor_exclude_r} when TRUE, it ignores R and r files (default FALSE)
+#'
+#' \code{todor_patterns} must be vector. Contains all the names of patterns
+#' to be detected. Default are: "FIXME", "TODO", "CHANGED", "IDEA", "HACK",
+#' "NOTE", "REVIEW", "BUG", "QUESTION", "COMBAK", "TEMP".
+#'
+#' @param todo_types vector with character describing types of elements
+#' to detect. If NULL default items will be used.
+#' @param search_path vector with paths that contains comments you are
+#' looking for.
+#' @param file character with path to file. If not NULL the search_path
+#' will be ignored.
 #'
 #' @export
 #' @import rex
@@ -62,10 +79,9 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
       files <- file
   }
   # Default TODO types
-  patterns <- as.character(read.csv(
-    system.file(DEFAULT_PATTERNS, package = "todor"),
-    stringsAsFactors = FALSE, header = FALSE)
-  )
+  patterns <- getOption("todor_patterns",
+                        c("FIXME", "TODO", "CHANGED", "IDEA", "HACK", "NOTE",
+                          "REVIEW", "BUG", "QUESTION", "COMBAK", "TEMP" ))
 
   if (is.null(todo_types))
     todo_types <- patterns

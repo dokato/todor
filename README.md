@@ -72,7 +72,7 @@ In markdown you probably don't want to use `#` comments. But that's okay, as `TO
 You can lock the markdown search option by setting:
 
 ```r
-options(todor_rmd=FALSE)
+options(todor_rmd = FALSE)
 ```
 
 # What can it detect?
@@ -90,3 +90,9 @@ By default *TODOr* looks for the following notes:
 - _QUESTION_
 - _COMBAK_
 - _TEMP_
+
+But you may change it by setting `todor_patterns` option, for example:
+
+```r
+options(todor_patterns = c("FIXME", "TODO", "CUSTOM"))
+```
