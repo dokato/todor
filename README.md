@@ -1,5 +1,9 @@
 # TODOr
 
+[![cranlogs](https://cranlogs.r-pkg.org/badges/todor)](https://CRAN.R-project.org/package=todor)
+[![total](https://cranlogs.r-pkg.org/badges/grand-total/todor)](https://CRAN.R-project.org/package=todor)
+
+
 This is RStudio addin that finds all **TODO**, **FIXME**, **CHANGED** etc. comments in your **project** or **package** and shows them as a markers list.
 
 # Installation
