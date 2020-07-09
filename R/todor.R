@@ -136,9 +136,12 @@ todor_file <- function(file_name, todo_types = NULL) {
 todor_project_addin <- function() {
   project_path <- rstudioapi::getActiveProject()
   if (is.null(project_path))
-    stop(paste0("You're not within R project. Change to project, ",
-                "or use `todor_file` instead."))
-  todor(search_path = project_path)
+    rstudioapi::showDialog("TODOr",
+      paste0("You're not within R project. Change to project, ",
+                  "or use `todor_file` instead.")
+    )
+  else
+    todor(search_path = project_path)
 }
 
 #' Todor package addin
