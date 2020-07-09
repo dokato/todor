@@ -137,8 +137,8 @@ todor_project_addin <- function() {
   project_path <- rstudioapi::getActiveProject()
   if (is.null(project_path))
     rstudioapi::showDialog("TODOr",
-      paste0("You're not within R project. Change to project, ",
-                  "or use `todor_file` instead.")
+      paste("You're not within R project. Change to project,",
+            "or use `todor_file` instead.")
     )
   else
     todor(search_path = project_path)
@@ -151,4 +151,16 @@ todor_project_addin <- function() {
 #' @export
 todor_package_addin <- function() {
   todor_package()
+}
+
+#' Todor active file addin
+#'
+#' Calls \code{todor_file} function on active document path.
+#'
+#' @export
+todor_file_addin <- function() {
+  if (nchar(rstudioapi::getActiveDocumentContext()$path) == 0)
+    rstudioapi::showDialog("TODOr","No active document detected.")
+  else
+    todor_file(rstudioapi::getActiveDocumentContext()$path)
 }
