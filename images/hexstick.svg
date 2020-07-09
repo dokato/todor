@@ -1,0 +1,20 @@
+<svg width="700" height="700" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="#56aaff" id="canvas_background" height="702" width="702" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect rx="20" id="svg_14" height="359.723206" width="409.021449" y="202.576107" x="147.937231" stroke-width="20" stroke="#000" fill="#fff"/>
+  <rect id="svg_3" y="360.448482" x="326.734223" width="177.9" height="27.4"/>
+  <rect id="svg_7" y="250.948482" x="326.734223" width="177.9" height="27.4"/>
+  <polygon id="svg_9" points="232.63992035388947,311.3484592437744 195.5399295091629,274.24846839904785 214.93993866443634,254.9484806060791 232.63992035388947,272.6484622955322 277.73994171619415,227.54848670959473 297.0399295091629,246.9484806060791 "/>
+  <rect id="svg_11" y="469.948482" x="326.734223" width="177.9" height="27.4"/>
+  <rect id="svg_16" height="0.770285" width="12.324563" y="301.942904" x="-177.123119" stroke-width="null" stroke="#000" fill="none"/>
+  <rect rx="4" id="svg_18" height="57.00111" width="57.771379" y="348.160016" x="208.789782" stroke-width="20" stroke="#000" fill="#fff"/>
+  <rect rx="4" id="svg_19" height="57.00111" width="57.771379" y="449.837659" x="208.789782" stroke-width="20" stroke="#000" fill="#fff"/>
+  <text font-weight="bold" transform="matrix(4.64243, 0, 0, 5.04024, -256.893, -149.332)" xml:space="preserve" text-anchor="start" font-family="'Courier New', Courier, monospace" font-size="24" id="svg_20" y="68.196087" x="95.363584" stroke="#000000" fill="#000000">TODOr</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_21" y="544.591622" x="288.06058" stroke="#000000" fill="#000000">by DOKATO</text>
+ </g>
+</svg>
