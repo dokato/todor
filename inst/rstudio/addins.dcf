@@ -1,3 +1,8 @@
+Name: Find active file TODOs
+Description: Find all places of your active file which require more work.
+Binding: todor_file_addin
+Interactive: false
+
 Name: Find project TODOs
 Description: Find all places of your project which require more work.
 Binding: todor_project_addin
