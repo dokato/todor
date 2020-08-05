@@ -10,15 +10,15 @@ This is RStudio addin that finds all **TODO**, **FIXME**, **CHANGED** etc. comme
 
 # Installation
 
-Stable release:
+Stable release from CRAN:
 
-```
+```r
 install.packages("todor")
 ```
 
-The most recent version:
+The latest version:
 
-```
+```r
 devtools::install_github("dokato/todor")
 ```
 
@@ -28,12 +28,16 @@ When you write an R package, sometimes it's useful to make a note in comments ab
 
 ```r
 simple_function <- function(a, b) {
-  # TODO in the future it should be multiplication
+  # TODO in the future check the type of input here
   a + b
 }
 ```
 
-With **TODOr**, detecting such places in the forest of code lines is simple. There are several options to do so. You can click at "Addins" button in the top panel and select *"Find package TODOs"* or *"Find project TODOs"* from the list of possible options:
+With **TODOr**, detecting such places in the forest of code lines is simple. There are several options to do so. You can click at "Addins" button in the top panel and select one of the options:
+
+- *"Find active file TODOs"* (for the active file in RStudio editor)
+- *"Find package TODOs"* (if you are creating package)
+- *"Find project TODOs"* (if you are inside the RStudio project)
 
 ![Addins panel](images/pic1.png)
 
@@ -63,6 +67,16 @@ To perform the search on a single file just call:
 > todor::todor_file("path_to_file.R")
 ```
 
+# What can it detect?
+
+By default *TODOr* looks for the following notes: _FIXME_, _TODO_, _CHANGED_, _IDEA_, _HACK_, _NOTE_, _REVIEW_, _BUG_, _QUESTION_, _COMBAK_, _TEMP_.
+
+But you may change it by setting `todor_patterns` option, for example:
+
+```r
+options(todor_patterns = c("FIXME", "TODO", "CUSTOM"))
+```
+
 ### Markdown
 
 In markdown you probably don't want to use `#` comments. But that's okay, as `TODOr` supports HTML-like comments too.
@@ -75,30 +89,35 @@ In markdown you probably don't want to use `#` comments. But that's okay, as `TO
 * Very important element.
 ```
 
-You can lock the markdown search option by setting:
+You can switch off the markdown search:
 
 ```r
 options(todor_rmd = FALSE)
 ```
 
-# What can it detect?
+# Other options
 
-By default *TODOr* looks for the following notes:
-
-- _FIXME_
-- _TODO_
-- _CHANGED_
-- _IDEA_
-- _HACK_
-- _NOTE_
-- _REVIEW_
-- _BUG_
-- _QUESTION_
-- _COMBAK_
-- _TEMP_
-
-But you may change it by setting `todor_patterns` option, for example:
+Searching through `Rnw` files (a default option is set below).
 
 ```r
-options(todor_patterns = c("FIXME", "TODO", "CUSTOM"))
+options(todor_rnw = TRUE)
 ```
+
+Searching through `Rhtml` files.
+
+```r
+options(todor_rhtml = FALSE)
+```
+
+Searching through `R`, `r` files.
+
+```r
+options(todor_exclude_r = FALSE)
+```
+
+Excluding packrat directory.
+
+```r
+options(todor_exlude_packrat = TRUE)
+```
+
