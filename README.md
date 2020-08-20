@@ -20,7 +20,10 @@ The latest version:
 
 ```r
 devtools::install_github("dokato/todor")
+# or
+remotes::install_github("dokato/todor")
 ```
+
 
 # How to use it?
 
