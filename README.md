@@ -70,6 +70,8 @@ To perform the search on a single file just call:
 > todor::todor_file("path_to_file.R")
 ```
 
+For more thorough walkthrough check this video-tutorial: https://youtu.be/f4mTYyD2C-8
+
 # What can it detect?
 
 By default *TODOr* looks for the following notes: _FIXME_, _TODO_, _CHANGED_, _IDEA_, _HACK_, _NOTE_, _REVIEW_, _BUG_, _QUESTION_, _COMBAK_, _TEMP_.
