@@ -123,6 +123,6 @@ options(todor_exclude_r = FALSE)
 Excluding packrat directory.
 
 ```r
-options(todor_exlude_packrat = TRUE)
+options(todor_exclude_packrat = TRUE)
 ```
 
