@@ -24,7 +24,7 @@ rex::register_shortcuts("todor")
 #' \code{todor_rhtml} - when set to TRUE it searches also through
 #' Rhtml files (default FALSE).
 #'
-#' \code{todor_exlude_packrat} when set to FALSE, all files in the
+#' \code{todor_exclude_packrat} when set to FALSE, all files in the
 #' "packrat" directory are excluded (default TRUE).
 #'
 #' \code{todor_exclude_r} when TRUE, it ignores R and r files (default FALSE)
