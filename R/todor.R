@@ -73,6 +73,13 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
     if (getOption("todor_exclude_renv", TRUE)) {
       files <- files[!stringr::str_detect(files, "/renv/")]
     }
+    if (!is.null(getOption("todor_extra", NULL))) {
+      todor_extra <- getOption("todor_extra")
+      for (ext in todor_extra) {
+        rhtmlfiles <- list_files_with_extension(ext, search_path)
+        files <- c(files, rhtmlfiles)
+      }
+    }
   }
   else {
     if (!file.exists(file))

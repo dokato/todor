@@ -126,3 +126,10 @@ Excluding packrat directory.
 options(todor_exlude_packrat = TRUE)
 ```
 
+Including extra file formats.
+
+```r
+options(todor_extra = c("txt", "dat"))
+options(todor_extra = NULL)
+```
+
