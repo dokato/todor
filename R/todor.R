@@ -15,31 +15,33 @@ rex::register_shortcuts("todor")
 #'
 #' There are several options that let you control TODOr behaviour:
 #'
-#' \code{todor_rmd} - when set to TRUE it searches also through
-#' Rmd files (default TRUE).
+#' \code{todor_rmd} - when set to TRUE it searches also through Rmd files
+#' (default TRUE).
 #'
-#' \code{todor_rnw} - when set to TRUE it searches also through
-#' Rnw files (default FALSE).
+#' \code{todor_rnw} - when set to TRUE it searches also through Rnw files
+#' (default FALSE).
 #'
-#' \code{todor_rhtml} - when set to TRUE it searches also through
-#' Rhtml files (default FALSE).
+#' \code{todor_rhtml} - when set to TRUE it searches also through Rhtml files
+#' (default FALSE).
 #'
-#' \code{todor_exclude_packrat} when set to FALSE, all files in the
-#' "packrat" directory are excluded (default TRUE).
+#' \code{todor_exclude_packrat} when set to FALSE, all files in the "packrat"
+#' directory are excluded (default TRUE).
 #'
 #' \code{todor_exclude_r} when TRUE, it ignores R and r files (default FALSE)
 #'
-#' \code{todor_patterns} must be vector. Contains all the names of patterns
-#' to be detected. Default are: "FIXME", "TODO", "CHANGED", "IDEA", "HACK",
-#' "NOTE", "REVIEW", "BUG", "QUESTION", "COMBAK", "TEMP".
+#' \code{todor_patterns} must be vector. Contains all the names of patterns to
+#' be detected. Default are: "FIXME", "TODO", "CHANGED", "IDEA", "HACK", "NOTE",
+#' "REVIEW", "BUG", "QUESTION", "COMBAK", "TEMP".
 #'
-#' @param todo_types vector with character describing types of elements
-#' to detect. If NULL default items will be used.
-#' @param search_path vector with paths that contains comments you are
-#' looking for.
-#' @param file character with path to file. If not NULL the search_path
-#' will be ignored.
-#' @param
+#' @param todo_types vector with character describing types of elements to
+#'   detect. If NULL default items will be used.
+#' @param search_path vector with paths that contains comments you are looking
+#'   for.
+#' @param file character with path to file. If not NULL the search_path will be
+#'   ignored.
+#' @param output what form should the output take? "markers" (default) creates a
+#'   marker for each TODO and lists them in the "Markers" Rstudio pane. "text"
+#'   coverts the TODO list to markdown syntax
 #'
 #' @export
 #' @import rex
@@ -104,6 +106,10 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL, output 
   names(processed) <- files
   markers <- create_markers(processed)
 
+  if(!(output %in% c("markers","text"))){
+    stop("Output format not recognised. Available options are \"markers\" and \"text\"")
+  }
+
   if (output == "text") {
     return(build_report(markers))
   } else {
@@ -153,6 +159,9 @@ todor_package <- function(todo_types = NULL) {
 #' @param file_name character with file name
 #' @param todo_types vector with character describing types of elements to detect.
 #' If NULL default items will be used.
+#' @param output what form should the output take? "markers" (default) creates a
+#'   marker for each TODO and lists them in the "Markers" Rstudio pane. "text"
+#'   coverts the TODO list to markdown syntax
 #'
 #' @export
 todor_file <- function(file_name, todo_types = NULL, output = "markers") {
