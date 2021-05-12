@@ -6,7 +6,12 @@
 This package helps you to find all code rows in your code with places
 to be filled in the future.}
 \usage{
-todor(todo_types = NULL, search_path = getwd(), file = NULL)
+todor(
+  todo_types = NULL,
+  search_path = getwd(),
+  file = NULL,
+  output = "markers"
+)
 }
 \arguments{
 \item{todo_types}{vector with character describing types of elements

@@ -39,11 +39,12 @@ rex::register_shortcuts("todor")
 #' looking for.
 #' @param file character with path to file. If not NULL the search_path
 #' will be ignored.
+#' @param
 #'
 #' @export
 #' @import rex
 #' @import utils
-todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
+todor <- function(todo_types = NULL, search_path = getwd(), file = NULL, output = "markers") {
   if (is.null(file)) {
     if (getOption("todor_exclude_r", FALSE)) {
       files <- c()
@@ -102,8 +103,32 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
   processed <- lapply(files, function(x) process_file(x, todo_types))
   names(processed) <- files
   markers <- create_markers(processed)
-  build_rstudio_markers(markers)
+
+  if (output == "text") {
+    return(build_report(markers))
+  } else {
+    build_rstudio_markers(markers)
+  }
 }
+
+build_report <- function(markers){
+
+  files <- unique(unlist(lapply(markers, "[", "file")))
+
+  get <- function(file){
+    paste0("**", R.utils::getRelativePath(file), "** \n\n",
+           paste0("- ", sapply(Filter(function(x) x$file==file, markers), `[[`, "message"), collapse = "\n"),
+           "\n\n"
+    )
+  }
+
+  text <- paste(unlist(purrr::map(files, get)), collapse = "")
+
+  return(text)
+
+}
+
+
 
 #' Todor Package addin
 #'
@@ -130,8 +155,8 @@ todor_package <- function(todo_types = NULL) {
 #' If NULL default items will be used.
 #'
 #' @export
-todor_file <- function(file_name, todo_types = NULL) {
-  todor(todo_types = todo_types, file = file_name)
+todor_file <- function(file_name, todo_types = NULL, output = "markers") {
+  todor(todo_types = todo_types, file = file_name, output = output)
 }
 
 #' Todor project addin
