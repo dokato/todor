@@ -31,3 +31,19 @@ find_pattern <- function(text, patterns = c("TODO", "FIXME")) {
   }
   extr
 }
+
+#' Clean line from comment tags
+#'
+#' @param line character with comment tag to remove
+#'
+#' @return cleaned character
+#'
+#' @examples
+#' clean_comments("#' TODO abc abc") #"TODO abc abc"
+clean_comments <- function(line) {
+  line <- stringr::str_replace(line, "^ *#'?", "")
+  line <- stringr::str_replace(line, "^ *<!--", "")
+  line <- stringr::str_replace(line, "--> *$", "")
+  trim <- function (x) gsub("^\\s+|\\s+$", "", x)
+  trim(line)
+}

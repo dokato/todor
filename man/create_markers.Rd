@@ -7,7 +7,7 @@
 create_markers(todo.list)
 }
 \arguments{
-\item{todo.list}{list of files with lists of items detected in it}
+\item{todo.list}{list of files with lists of items detected in each}
 }
 \value{
 markers list

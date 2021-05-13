@@ -38,12 +38,13 @@ process_file <- function(filepath, patterns) {
       break
     }
     pattern_check <- find_pattern(line, patterns = patterns)
-    if (!is.null(pattern_check))
+    if (!is.null(pattern_check)) {
+      cleaned_line <- clean_comments(line)
+      cleaned_line <- stringr::str_replace(cleaned_line, pattern_check, "")
       markers[[length(markers) + 1]] <- list(nr = n,
                                              type = pattern_check,
-                                             text = stringr::str_replace(
-                                               line, pattern_check, "")
-      )
+                                             text = cleaned_line)
+    }
     n <- n + 1
   }
   close(con)

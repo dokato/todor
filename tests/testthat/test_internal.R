@@ -38,3 +38,15 @@ test_that("test find_pattern function at the end of the line", {
   p <- find_pattern(" ab abc absdkskad # TODO", patterns = c("FIX"))
   expect_null(p)
 })
+
+test_that("test clean_comments", {
+  p <- clean_comments("   #'TODO abc abc")
+  expect_match(p, "TODO abc abc")
+  tstline <- "abc abc"
+  p <- clean_comments(tstline)
+  expect_match(p, tstline)
+  tstline <- "   <!-- TODO abc abc -->"
+  p <- clean_comments(tstline)
+  expect_match(p, "TODO abc abc")
+})
+

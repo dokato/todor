@@ -1,6 +1,6 @@
 #' Create markers
 #'
-#' @param todo.list list of files with lists of items detected in it
+#' @param todo.list list of files with lists of items detected in each
 #'
 #' @return markers list
 create_markers <- function(todo.list) {
