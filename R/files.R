@@ -39,7 +39,7 @@ process_file <- function(filepath, patterns) {
     }
     pattern_check <- find_pattern(line, patterns = patterns)
     if (!is.null(pattern_check)) {
-      cleaned_line <- clean_comments(line)
+      cleaned_line <- clean_comments(line, pattern_check)
       cleaned_line <- stringr::str_replace(cleaned_line, pattern_check, "")
       markers[[length(markers) + 1]] <- list(nr = n,
                                              type = pattern_check,
