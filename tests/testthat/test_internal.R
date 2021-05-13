@@ -49,7 +49,7 @@ test_that("test clean_comments", {
   p <- clean_comments(tstline)
   expect_match(p, "TODO abc abc")
   tstline <- "abc abc ( <!-- TODO Get date --> )"
-  p <- clean_comments(tstline)
+  p <- clean_comments(tstline, "TODO")
   expect_match(p, "TODO Get date")
 })
 
