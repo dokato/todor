@@ -15,35 +15,38 @@ rex::register_shortcuts("todor")
 #'
 #' There are several options that let you control TODOr behaviour:
 #'
-#' \code{todor_rmd} - when set to TRUE it searches also through
-#' Rmd files (default TRUE).
+#' \code{todor_rmd} - when set to TRUE it searches also through Rmd files
+#' (default TRUE).
 #'
-#' \code{todor_rnw} - when set to TRUE it searches also through
-#' Rnw files (default FALSE).
+#' \code{todor_rnw} - when set to TRUE it searches also through Rnw files
+#' (default FALSE).
 #'
-#' \code{todor_rhtml} - when set to TRUE it searches also through
-#' Rhtml files (default FALSE).
+#' \code{todor_rhtml} - when set to TRUE it searches also through Rhtml files
+#' (default FALSE).
 #'
-#' \code{todor_exclude_packrat} when set to FALSE, all files in the
-#' "packrat" directory are excluded (default TRUE).
+#' \code{todor_exclude_packrat} when set to FALSE, all files in the "packrat"
+#' directory are excluded (default TRUE).
 #'
 #' \code{todor_exclude_r} when TRUE, it ignores R and r files (default FALSE)
 #'
-#' \code{todor_patterns} must be vector. Contains all the names of patterns
-#' to be detected. Default are: "FIXME", "TODO", "CHANGED", "IDEA", "HACK",
-#' "NOTE", "REVIEW", "BUG", "QUESTION", "COMBAK", "TEMP".
+#' \code{todor_patterns} must be vector. Contains all the names of patterns to
+#' be detected. Default are: "FIXME", "TODO", "CHANGED", "IDEA", "HACK", "NOTE",
+#' "REVIEW", "BUG", "QUESTION", "COMBAK", "TEMP".
 #'
-#' @param todo_types vector with character describing types of elements
-#' to detect. If NULL default items will be used.
-#' @param search_path vector with paths that contains comments you are
-#' looking for.
-#' @param file character with path to file. If not NULL the search_path
-#' will be ignored.
+#' @param todo_types vector with character describing types of elements to
+#'   detect. If NULL default items will be used.
+#' @param search_path vector with paths that contains comments you are looking
+#'   for.
+#' @param file character with path to file. If not NULL the search_path will be
+#'   ignored.
+#' @param output what form should the output take? "markers" (default) creates a
+#'   marker for each TODO and lists them in the "Markers" Rstudio pane. "text"
+#'   coverts the TODO list to markdown syntax
 #'
 #' @export
 #' @import rex
 #' @import utils
-todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
+todor <- function(todo_types = NULL, search_path = getwd(), file = NULL, output = "markers") {
   if (is.null(file)) {
     if (getOption("todor_exclude_r", FALSE)) {
       files <- c()
@@ -102,7 +105,71 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL) {
   processed <- lapply(files, function(x) process_file(x, todo_types))
   names(processed) <- files
   markers <- create_markers(processed)
-  build_rstudio_markers(markers)
+
+
+  # Check output is one of allowed options
+  if(!(output %in% c("markers","list","markdown"))){
+    stop("Output format not recognised. Available options are \"markers\", \"list\" and \"markdown\"")
+  }
+
+  # Push markers to RStudio marker pane, or return list or markdown
+  if (output == "markers"){
+    build_rstudio_markers(markers)
+  }
+
+  if (output == "list"){
+    return(markers) # return() needed here
+  }
+
+  if (output == "markdown") {
+    build_report(markers)
+  }
+}
+
+#' Build TODO report in markdown syntax
+#'
+#' @description Extracts the list of unique files which contain a \code{todor}
+#'   marker and applies \code{extract_markers_to_md} to each of these files.
+#'
+#' @param markers List of todor markers.
+#'
+#' @export
+
+build_report <- function(markers) {
+  files <- unique(unlist(lapply(markers, "[", "file")))
+
+  text <-
+    paste(unlist(mapply(
+      extract_markers_to_md, files, MoreArgs = list(markers = markers)
+    )), collapse = "")
+
+  text
+
+}
+
+#' Extract markers to markdown
+#'
+#' @description Extracts all \code{todor} markers in a given file and converts
+#'   them to bullet-pointed markdown syntax. The file name is printed in bold at
+#'   the top of each section.
+#'
+#' @param file Name of file. Used to extract TODOs in that file from the list of
+#'   markers.
+#' @param markers List of \code{todor} markers.
+#'
+#' @export
+
+extract_markers_to_md <- function(file, markers) {
+  paste0(
+    "**",
+    R.utils::getRelativePath(file),
+    "** \n\n",
+    paste0("- ", sapply(
+      Filter(function(x)
+        x$file == file, markers), `[[`, "message"
+    ), collapse = "\n"),
+    "\n\n"
+  )
 }
 
 #' Todor Package addin
@@ -128,10 +195,13 @@ todor_package <- function(todo_types = NULL) {
 #' @param file_name character with file name
 #' @param todo_types vector with character describing types of elements to detect.
 #' If NULL default items will be used.
+#' @param output what form should the output take? "markers" (default) creates a
+#'   marker for each TODO and lists them in the "Markers" Rstudio pane. "text"
+#'   coverts the TODO list to markdown syntax
 #'
 #' @export
-todor_file <- function(file_name, todo_types = NULL) {
-  todor(todo_types = todo_types, file = file_name)
+todor_file <- function(file_name, todo_types = NULL, output = "markers") {
+  todor(todo_types = todo_types, file = file_name, output = output)
 }
 
 #' Todor project addin
