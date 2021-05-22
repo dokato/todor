@@ -1,4 +1,4 @@
-library(todor)
+context("internal functions")
 
 test_that("test process_file function", {
   to_detect <- c("BUG")
