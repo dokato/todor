@@ -4,13 +4,17 @@
 \alias{todor_file}
 \title{Todor file}
 \usage{
-todor_file(file_name, todo_types = NULL)
+todor_file(file_name, todo_types = NULL, output = "markers")
 }
 \arguments{
 \item{file_name}{character with file name}
 
 \item{todo_types}{vector with character describing types of elements to detect.
 If NULL default items will be used.}
+
+\item{output}{what form should the output take? "markers" (default) creates a
+marker for each TODO and lists them in the "Markers" Rstudio pane. "text"
+coverts the TODO list to markdown syntax}
 }
 \description{
 Todor file
