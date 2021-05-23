@@ -8,6 +8,8 @@ clean_comments(line, pattern = NULL)
 }
 \arguments{
 \item{line}{character with comment tag to remove}
+
+\item{pattern}{character with pattern to detect (default NULL)}
 }
 \value{
 cleaned character
@@ -16,5 +18,7 @@ cleaned character
 Clean line from comment tags
 }
 \examples{
+\dontrun{
 clean_comments("#' TODO abc abc") #"TODO abc abc"
+}
 }

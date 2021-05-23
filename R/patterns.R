@@ -36,11 +36,14 @@ find_pattern <- function(text, patterns = c("TODO", "FIXME")) {
 #' Clean line from comment tags
 #'
 #' @param line character with comment tag to remove
+#' @param pattern character with pattern to detect (default NULL)
 #'
 #' @return cleaned character
 #'
 #' @examples
+#' \dontrun{
 #' clean_comments("#' TODO abc abc") #"TODO abc abc"
+#' }
 clean_comments <- function(line, pattern = NULL) {
   if (!is.null(pattern)) {
     line <- stringr::str_extract(line, sprintf("(%s).*", pattern)) # find comment starting from pattern
