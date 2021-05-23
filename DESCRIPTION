@@ -1,6 +1,6 @@
 Package: todor
 Title: Find All TODO Comments and More
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: person("Dominik", "Krzemiński",
                   email = "raymon92@gmail.com",
                   role = c("aut", "cre"))

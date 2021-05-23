@@ -46,7 +46,8 @@ rex::register_shortcuts("todor")
 #' @export
 #' @import rex
 #' @import utils
-todor <- function(todo_types = NULL, search_path = getwd(), file = NULL, output = "markers") {
+todor <- function(todo_types = NULL, search_path = getwd(),
+                  file = NULL, output = "markers") {
   if (is.null(file)) {
     if (getOption("todor_exclude_r", FALSE)) {
       files <- c()
@@ -107,23 +108,17 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL, output 
   markers <- create_markers(processed)
 
 
-  # Check output is one of allowed options
-  if(!(output %in% c("markers","list","markdown"))){
-    stop("Output format not recognised. Available options are \"markers\", \"list\" and \"markdown\"")
-  }
-
   # Push markers to RStudio marker pane, or return list or markdown
   if (output == "markers"){
     build_rstudio_markers(markers)
-  }
-
-  if (output == "list"){
-    return(markers) # return() needed here
-  }
-
-  if (output == "markdown") {
-    build_report(markers)
-  }
+  } else if (output == "list"){
+    return(markers)
+  } else if (output == "markdown") {
+    build_markdown_report(markers)
+  } else
+    # Check output is one of allowed options
+    stop(paste0("Output format not recognised. Available options are",
+                "\"markers\", \"list\" and \"markdown\""))
 }
 
 #' Build TODO report in markdown syntax
@@ -134,42 +129,13 @@ todor <- function(todo_types = NULL, search_path = getwd(), file = NULL, output 
 #' @param markers List of todor markers.
 #'
 #' @export
-
-build_report <- function(markers) {
+build_markdown_report <- function(markers) {
   files <- unique(unlist(lapply(markers, "[", "file")))
-
   text <-
     paste(unlist(mapply(
       extract_markers_to_md, files, MoreArgs = list(markers = markers)
     )), collapse = "")
-
   text
-
-}
-
-#' Extract markers to markdown
-#'
-#' @description Extracts all \code{todor} markers in a given file and converts
-#'   them to bullet-pointed markdown syntax. The file name is printed in bold at
-#'   the top of each section.
-#'
-#' @param file Name of file. Used to extract TODOs in that file from the list of
-#'   markers.
-#' @param markers List of \code{todor} markers.
-#'
-#' @export
-
-extract_markers_to_md <- function(file, markers) {
-  paste0(
-    "**",
-    R.utils::getRelativePath(file),
-    "** \n\n",
-    paste0("- ", sapply(
-      Filter(function(x)
-        x$file == file, markers), `[[`, "message"
-    ), collapse = "\n"),
-    "\n\n"
-  )
 }
 
 #' Todor Package addin

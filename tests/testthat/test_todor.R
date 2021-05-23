@@ -1,13 +1,31 @@
-context("internal functions")
+context("exported functions")
 
-test_that("test process_file function", {
-  to_detect <- c("BUG")
-  p <- process_file("demo.R", to_detect)
-  expect_equal(length(p), 1)
-  to_detect <- c("BUG", "TODO")
-  p <- process_file("demo.R", to_detect)
-  expect_equal(length(p), 2)
+mock_markers <- list()
+mock_markers[[1]] <- list(file = "aaa.R", line = 12,
+                          column = 1, message = "[BUG] bug")
+mock_markers[[2]] <- list(file = "bbb.R", line = 5,
+                          column = 5, message = "[TODO] todo")
+
+test_that("test extract markers", {
+  res <- extract_markers_to_md("aaa.R", mock_markers)
+  expect_equal(res, "**aaa.R** \n\n- [BUG] bug\n\n")
+  res <- extract_markers_to_md("bbb.R", mock_markers)
+  expect_match(res, "todo")
 })
+
+test_that("test markdown report", {
+  res <- build_markdown_report(mock_markers)
+  expect_equal(res, "**aaa.R** \n\n- [BUG] bug\n\n**bbb.R** \n\n- [TODO] todo\n\n")
+})
+
+test_that("test todor output options", {
+  expect_error(todor(output = "mjdshbnxXgh"))
+  res <- todor(output = "markdown")
+  expect_is(res, "character")
+  res <- todor(output = "list")
+  expect_is(res, "list")
+})
+
 
 test_that("test create_markers function", {
   p <- list(file1.R = list(list(nr = 4, type = "TODO", text = "abc abc"),

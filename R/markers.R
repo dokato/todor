@@ -32,3 +32,27 @@ build_rstudio_markers <- function(markers){
                       basePath = NULL,
                       autoSelect = "first")
 }
+
+#' Extract markers to markdown
+#'
+#' @description Extracts all \code{todor} markers in a given file and converts
+#'   them to bullet-pointed markdown syntax. The file name is printed in bold at
+#'   the top of each section.
+#'
+#' @param file Name of file. Used to extract TODOs in that file from the list of
+#'   markers.
+#' @param markers List of \code{todor} markers.
+#'
+#' @export
+extract_markers_to_md <- function(file, markers) {
+  paste0(
+    "**",
+    R.utils::getRelativePath(file),
+    "** \n\n",
+    paste0("- ", sapply(
+      Filter(function(x)
+        x$file == file, markers), `[[`, "message"
+    ), collapse = "\n"),
+    "\n\n"
+  )
+}

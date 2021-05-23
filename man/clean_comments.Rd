@@ -4,7 +4,7 @@
 \alias{clean_comments}
 \title{Clean line from comment tags}
 \usage{
-clean_comments(line)
+clean_comments(line, pattern = NULL)
 }
 \arguments{
 \item{line}{character with comment tag to remove}
