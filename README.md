@@ -2,6 +2,7 @@
 
 <img src="images/hexstick.png" align="right" alt="" width="150" />
 
+[![CRAN status](https://www.r-pkg.org/badges/version/todor)](https://cran.r-project.org/package=todor)
 [![cranlogs](https://cranlogs.r-pkg.org/badges/todor)](https://CRAN.R-project.org/package=todor)
 [![total](https://cranlogs.r-pkg.org/badges/grand-total/todor)](https://CRAN.R-project.org/package=todor)
 [![R-CMD-check](https://github.com/dokato/todor/workflows/R-CMD-check/badge.svg)](https://github.com/dokato/todor/actions)
