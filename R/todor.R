@@ -40,8 +40,9 @@ rex::register_shortcuts("todor")
 #' @param file character with path to file. If not NULL the search_path will be
 #'   ignored.
 #' @param output what form should the output take? "markers" (default) creates a
-#'   marker for each TODO and lists them in the "Markers" Rstudio pane. "text"
-#'   coverts the TODO list to markdown syntax
+#'   marker for each TODO and lists them in the "Markers" Rstudio pane.
+#'   "markdown" converts the TODO list to markdown syntax. "list" results in a
+#'   list of files with lists of items detected in each
 #'
 #' @export
 #' @import rex
