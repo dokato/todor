@@ -72,6 +72,10 @@ todor <- function(todo_types = NULL, search_path = getwd(),
       rhtmlfiles <- list_files_with_extension("Rhtml", search_path)
       files <- c(files, rhtmlfiles)
     }
+    if (getOption("todor_vignettes", FALSE)) {
+      vigfiles <- list_files_with_extension("Rmd", file.path(search_path, "vignettes"))
+      files <- c(files, vigfiles)
+    }
     if (getOption("todor_exclude_packrat", TRUE)) {
       files <- files[!stringr::str_detect(files, "/packrat/")]
     }
