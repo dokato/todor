@@ -1,0 +1,4 @@
+status:
+  change_threshold: 5
+  api:
+    fail_threshold: 50
