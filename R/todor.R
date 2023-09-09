@@ -18,6 +18,9 @@ rex::register_shortcuts("todor")
 #' \code{todor_rmd} - when set to TRUE it searches also through Rmd files
 #' (default TRUE).
 #'
+#' \code{todor_qmd} - when set to TRUE it searches also through qmd files
+#' (default TRUE).
+#'
 #' \code{todor_rnw} - when set to TRUE it searches also through Rnw files
 #' (default FALSE).
 #'
@@ -63,6 +66,10 @@ todor <- function(todo_types = NULL, search_path = getwd(),
     if (getOption("todor_rmd", TRUE)) {
       rmdfiles <- list_files_with_extension("Rmd", search_path)
       files <- c(files, rmdfiles)
+    }
+    if (getOption("todor_qmd", TRUE)) {
+      qmdfiles <- list_files_with_extension("qmd", search_path)
+      files <- c(files, qmdfiles)
     }
     if (getOption("todor_rnw", FALSE)) {
       rnwfiles <- list_files_with_extension("Rnw", search_path)
