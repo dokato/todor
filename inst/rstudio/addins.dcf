@@ -1,14 +1,14 @@
-Name: Find active file TODOs
+Name: TODOR an active file
 Description: Find all places of your active file which require more work.
 Binding: todor_file_addin
 Interactive: false
 
-Name: Find project TODOs
+Name: TODOR a project
 Description: Find all places of your project which require more work.
 Binding: todor_project_addin
 Interactive: false
 
-Name: Find package TODOs
+Name: TODOR a package
 Description: Find all places of your package which require more work.
 Binding: todor_package_addin
 Interactive: false

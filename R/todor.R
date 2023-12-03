@@ -214,8 +214,8 @@ todor_package_addin <- function() {
 #'
 #' @export
 todor_file_addin <- function() {
-  if (nchar(rstudioapi::getActiveDocumentContext()$path) == 0)
+  if (nchar(rstudioapi::getSourceEditorContext()$path) == 0)
     rstudioapi::showDialog("TODOr","No active document detected.")
   else
-    todor_file(rstudioapi::getActiveDocumentContext()$path)
+    todor_file(rstudioapi::getSourceEditorContext()$path)
 }
