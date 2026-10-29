@@ -84,6 +84,15 @@ But you may change it by setting `todor_patterns` option, for example:
 options(todor_patterns = c("FIXME", "TODO", "CUSTOM"))
 ```
 
+To check what patterns are currently set, run:
+
+```r
+getOption("todor_patterns")
+# NULL means TODOr will use its built-in defaults:
+# c("FIXME", "TODO", "CHANGED", "IDEA", "HACK", "NOTE",
+#   "REVIEW", "BUG", "QUESTION", "COMBAK", "TEMP")
+```
+
 ### Markdown
 
 In markdown you probably don't want to use `#` comments. But that's okay, as `TODOr` supports HTML-like comments too.
