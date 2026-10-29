@@ -102,6 +102,12 @@ You can switch off the markdown search:
 options(todor_rmd = FALSE)
 ```
 
+Searching through `qmd` files (Quarto) is enabled by default. You can switch it off:
+
+```r
+options(todor_qmd = FALSE)
+```
+
 # Other options
 
 Searching through `Rnw` files (a default option is set below).
@@ -134,4 +140,3 @@ Including extra file formats.
 options(todor_extra = c("txt", "dat"))
 options(todor_extra = NULL)
 ```
-

@@ -39,13 +39,16 @@ There are several options that let you control TODOr behaviour:
 \code{todor_rmd} - when set to TRUE it searches also through Rmd files
 (default TRUE).
 
+\code{todor_qmd} - when set to TRUE it searches also through qmd files
+(default TRUE).
+
 \code{todor_rnw} - when set to TRUE it searches also through Rnw files
 (default FALSE).
 
 \code{todor_rhtml} - when set to TRUE it searches also through Rhtml files
 (default FALSE).
 
-\code{todor_exclude_packrat} when set to FALSE, all files in the "packrat"
+\code{todor_exclude_packrat} when set to TRUE, all files in the "packrat"
 directory are excluded (default TRUE).
 
 \code{todor_exclude_r} when TRUE, it ignores R and r files (default FALSE)
