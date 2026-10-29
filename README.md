@@ -84,6 +84,15 @@ But you may change it by setting `todor_patterns` option, for example:
 options(todor_patterns = c("FIXME", "TODO", "CUSTOM"))
 ```
 
+To check what patterns are currently set, run:
+
+```r
+getOption("todor_patterns")
+# NULL means TODOr will use its built-in defaults:
+# c("FIXME", "TODO", "CHANGED", "IDEA", "HACK", "NOTE",
+#   "REVIEW", "BUG", "QUESTION", "COMBAK", "TEMP")
+```
+
 ### Markdown
 
 In markdown you probably don't want to use `#` comments. But that's okay, as `TODOr` supports HTML-like comments too.
@@ -100,6 +109,12 @@ You can switch off the markdown search:
 
 ```r
 options(todor_rmd = FALSE)
+```
+
+Searching through `qmd` files (Quarto) is enabled by default. You can switch it off:
+
+```r
+options(todor_qmd = FALSE)
 ```
 
 # Other options
@@ -134,4 +149,3 @@ Including extra file formats.
 options(todor_extra = c("txt", "dat"))
 options(todor_extra = NULL)
 ```
-
