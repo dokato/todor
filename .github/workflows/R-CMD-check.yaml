@@ -46,14 +46,8 @@ jobs:
           key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
           restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
 
-      - name: Install system dependencies
-        if: runner.os == 'Linux'
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
-        run: |
-          Rscript -e "remotes::install_github('r-hub/sysreqs')"
-          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sudo -s eval "$sysreqs"
+      # Skipping sysreqs on Linux to avoid SSL failures contacting sysreqs.r-hub.io
+      # The package has no SystemRequirements in DESCRIPTION, so this is safe.
 
       - name: Install Covr
         run: Rscript -e "remotes::install_github('r-lib/covr')"
